@@ -1,0 +1,2 @@
+Network: kovan (id: 42)
+  TODWallet: 0x48751D3C53a6B678199C03190a093CeB0d520003
