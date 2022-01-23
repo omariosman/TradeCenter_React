@@ -153,11 +153,7 @@ function reducer(state: State = INITIAL_STATE, action: Action) {
           };
 
           if (data.executed) {
-            /*
-            Exercise
-            Complete the if statement
-            Set updatedTx.executed to true
-            */
+          
             updatedTx.executed = true;
           }
           if (data.confirmed !== undefined) {
@@ -336,16 +332,7 @@ export function Updater() {
                 account,
               });
               break;
-            /*
-            Exercise
-            Create a case statement for "execTx"
-            Call updateTx with the following input
-            {
-              ...log.returnValues,
-              executed: true,
-              account,
-            }
-            */
+           
             case "execTx":
               updateTx({
                 ...log.returnValues,

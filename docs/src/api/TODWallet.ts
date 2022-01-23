@@ -198,10 +198,7 @@ export async function executeTx(
     txIndex: number;
   }
 ) {
-  /*
-  Exercise
-  Write code that will call execTxFunc on TODWallet contract
-  */
+ 
   const { txIndex } = params;
 
   TODWallet.setProvider(web3.currentProvider);
@@ -300,19 +297,7 @@ interface removeConfirmation {
   };
 }
 
-/*
-Exercise
-Define an interface execTx.
-The shape of the interface should be the following:
 
-{
-  event: "execTx";
-  returnValues: {
-    owner: string;
-    txIndex: string;
-  };
-}
-*/
 interface execTx {
   event: "execTx";
   returnValues: {
@@ -321,9 +306,7 @@ interface execTx {
   };
 }
 
-/*
-Exercise - Add execTx to Log type
-*/
+
 type Log =
   | Deposit
   | requestTx
