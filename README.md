@@ -56,3 +56,7 @@
 
 >>>>>>> final project
 
+
+# public wallet address for nft
+- 0xa5FD53AE86B24F943869abfbfBF0B8cd03C80043
+
