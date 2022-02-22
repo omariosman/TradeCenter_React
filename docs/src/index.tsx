@@ -7,20 +7,21 @@ import {
   Updater as Web3Updater,
 } from "./contexts/Web3";
 import {
-  Provider as MultiSigWalletProvider,
-  Updater as MultiSigWalletUpdater,
-} from "./contexts/TODWallet";
+  Provider as YieldOfferingWalletProvider,
+  Updater as YieldOfferingWalletUpdater,
+} from "./contexts/TradeCenter";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Web3Provider>
-      <MultiSigWalletProvider>
+      <YieldOfferingWalletProvider>
         <App />
         <Web3Updater />
-        <MultiSigWalletUpdater />
-      </MultiSigWalletProvider>
+        <YieldOfferingWalletUpdater />
+      </YieldOfferingWalletProvider>
     </Web3Provider>
   </React.StrictMode>,
   document.getElementById("root")
