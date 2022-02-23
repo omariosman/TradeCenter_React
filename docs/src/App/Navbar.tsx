@@ -5,6 +5,18 @@ import { Button, Form } from "semantic-ui-react";
 import { useWeb3Context } from "../contexts/Web3";
 import useAsync from "../components/useAsync";
 import { deposit } from "../api/TODWallet";
+import AddOffering from  "./AddOffering";
+import GetOfferings from  "./GetOfferings";
+
+
+
+  import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+
 
 interface Props {}
 
@@ -21,6 +33,7 @@ const Navbar: React.FC<Props> = () => {
 
 
   return (
+<Router>
 
 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <a className="navbar-brand" href="#">Yield Offering</a>
@@ -31,14 +44,20 @@ const Navbar: React.FC<Props> = () => {
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item active">
+      <Link to="/">
         <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+        </Link>
       </li>
       <li className="nav-item">
+      <Link to="/AddOffering">
         <a className="nav-link" href="#">Add Offering</a>
+        </Link>
       </li>
 
       <li className="nav-item">
-        <a className="nav-link" href="#">Buy Offering</a>
+      <Link to="/GetOfferings">
+        <a className="nav-link" href="#">Get Offerings</a>
+        </Link>
       </li>
 
 
@@ -49,6 +68,15 @@ const Navbar: React.FC<Props> = () => {
     </form>
   </div>
 </nav>
+<Switch>  
+          <Route path="/AddOffering">
+            <AddOffering />
+          </Route>
+          <Route path="/GetOfferings">
+            <GetOfferings />
+          </Route>
+</Switch>
+</Router>
   );
 };
 

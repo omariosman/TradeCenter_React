@@ -53,8 +53,7 @@ function App() {
             <YieldOfferingWallet />
             <br></br>
             <SignInIssuer />
-            <GetOfferings />
-            <GetContracts />
+
           </>
         ) : (
           <>
