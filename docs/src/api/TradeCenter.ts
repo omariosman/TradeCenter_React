@@ -7,6 +7,33 @@ import { AbiItem } from 'web3-utils'
 // @ts-ignore
 const YieldOfferingWallet = TruffleContract(YieldOfferings);
 
+
+interface Contract {
+  buyer: BN;
+  issuer: BN;
+  amount: BN;
+  offeringID: BN;
+  contractID: BN;
+
+}
+
+interface Offering {
+ issuer: BN;
+  ID: BN;
+  name: string;
+  Nb_fixings: BN;
+  fixing_counter: BN;
+  high_coupon: BN;
+  high_coupon_barrier: BN;
+  smaller_coupon: BN;
+  Upoutbarrier: BN;
+  di_barrier: BN;
+ Di_barrier_activated: boolean;
+ contractList: Contract[];
+}
+
+
+
 interface Transaction {
   txIndex: number;
   to: string;
@@ -20,6 +47,8 @@ interface Transaction {
 interface GetResponse {
   address: string;
   balance: any;
+  offering: any[],
+  contracts: any[]
 
 }
 
@@ -29,9 +58,16 @@ export async function get(web3: Web3, account: string): Promise<GetResponse> {
 
     const balance = await web3.eth.getBalance(yieldOffering.address)
 
+
+    const offering = await yieldOffering.getOfferings( { from: account });
+
+    const contracts =  await yieldOffering.getAllContracts( { from: account });
+
     return {
         address: yieldOffering.address,
-        balance: balance
+        balance: balance,
+        offering: offering,
+        contracts: contracts
     };
 
 }
@@ -60,6 +96,31 @@ export async function deposit(
 }
 
 
+/* START buy offering */ 
+
+
+export async function buyOffering(
+  web3: Web3,
+  account: string,
+  params: {
+    ID: BN,
+    offering_amount: BN
+  }
+)
+
+
+
+{
+  YieldOfferingWallet.setProvider(web3.currentProvider);
+  const yieldOffering = await YieldOfferingWallet.deployed();
+
+  await yieldOffering.buyOffering( params.ID, {from: account});
+}
+
+/* END buy offering */ 
+
+
+
 /*
 START Sign In Issuer
 */ 
@@ -80,6 +141,53 @@ export async function signInIssuer(
 /*
 END Sign In Issuer
 */ 
+
+
+/*
+START Get Offerings
+*/ 
+
+/*
+const offeringCount = await yieldOfferings.methods.offeringCount().call()
+       this.setState({offeringCount})
+      // Load Offerings
+
+      for (var i = 1; i <= offeringCount; i++) {
+        const offering = await yieldOfferings.methods.Offerings(i).call()
+        this.setState({
+          Offerings: [...this.state.Offerings, offering]
+        })
+      }
+*/
+
+
+export async function getOfferings(
+  web3: Web3,
+  account: string,
+)
+
+
+
+
+{
+
+  YieldOfferingWallet.setProvider(web3.currentProvider);
+  const yieldOffering = await YieldOfferingWallet.deployed();
+
+  const offeringCount = await yieldOffering.methods.offeringCount().call()
+       //this.setState({offeringCount})
+
+  for (var i = 1; i <= offeringCount; i++) {
+    const offering = await yieldOffering.methods.Offerings(i).call()
+
+ 
+  }
+}
+
+/*
+END Get Offerings
+*/ 
+
 
 
 

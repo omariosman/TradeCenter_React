@@ -9,6 +9,8 @@ import Navbar from "./Navbar";
 import SignInIssuer from "./SignInIssuer";
 import Network from "./Network";
 import AddOffering from './AddOffering';
+import GetOfferings from './GetOfferings';
+import GetContracts from './GetContracts';
 
 import { useYieldOfferingWalletContext } from "../contexts/TradeCenter";
 
@@ -51,7 +53,8 @@ function App() {
             <YieldOfferingWallet />
             <br></br>
             <SignInIssuer />
-
+            <GetOfferings />
+            <GetContracts />
           </>
         ) : (
           <>

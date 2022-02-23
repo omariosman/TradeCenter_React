@@ -18,8 +18,36 @@ import { get as getYieldOfferingWallet, subscribe } from "../api/TradeCenter";
 interface State {
   address: string;
   balance: any;
+  offering: any[];
+  contracts: any[]
 
 }
+
+
+interface Contract {
+    buyer: BN;
+    issuer: BN;
+    amount: BN;
+    offeringID: BN;
+    contractID: BN;
+  
+  }
+
+interface Offering {
+    issuer: BN;
+     ID: BN;
+     name: string;
+     Nb_fixings: BN;
+     fixing_counter: BN;
+     high_coupon: BN;
+     high_coupon_barrier: BN;
+     smaller_coupon: BN;
+     Upoutbarrier: BN;
+     di_barrier: BN;
+    Di_barrier_activated: boolean;
+    contractList: Contract[];
+   }
+   
 
 interface Transaction {
   txIndex: number;
@@ -34,6 +62,9 @@ interface Transaction {
 const INITIAL_STATE: State = {
   address: "",
   balance: "20",
+  offering: [], //this takes value
+  contracts: []
+
 };
 
 const SET = "SET";
@@ -45,8 +76,9 @@ interface Set {
   data: {
     address: string;
     balance: any;
+    offering: any[]; //this takes type
+    contracts: any[];
 
-    
   };
 }
 
@@ -75,7 +107,8 @@ function reducer(state: State = INITIAL_STATE, action: Action) {
 interface SetInputs {
   address: string;
   balance: string;
-
+  offering: any[]; //this takes type
+  contracts: any[];
 }
 
 interface UpdateBalanceInputs {
