@@ -1,6 +1,8 @@
-# Important Note 1: The front end will not work on a contract deployed locally, because i use oracles the outside world, so, only run truffle tests when testing on locally deployed contract
+# Important Note 1: 
+The front end will not work on a contract deployed locally, because i use oracles the outside world, so, only run truffle tests when testing on locally deployed contract
 
-# Important Note 2: Migrate only on Kovan testnet, the chainlink oracle I use resides on this chain
+# Important Note 2:
+Migrate only on Kovan testnet, the chainlink oracle I use resides on this chain
 
 
 # Prerequisites:
